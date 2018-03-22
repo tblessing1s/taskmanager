@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  description: MyText
+  lot: 1
+  completed: false
+  reoccuring: false
+
+two:
+  title: MyString
+  description: MyText
+  lot: 1
+  completed: false
+  reoccuring: false
