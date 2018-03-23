@@ -1,0 +1,13 @@
+<h1><%= @employee.name %></h1>
+
+<ul>
+  <li> <%= @employee.email %></li>
+  <li> <%= @employee.phone %></li>
+  <li> <%= @employee.time %> minutes </li>
+</ul>
+
+<nav>
+  <%= link_to 'Edit', edit_employee_path %>
+  <%= link_to 'Delete', @employee, method: :delete, data: {confirm: 'Are you certain you want to permanently delete this employee?'} %>
+  <%= link_to 'All Employees', employees_path %>
+</nav>
