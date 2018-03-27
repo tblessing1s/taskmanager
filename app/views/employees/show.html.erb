@@ -1,4 +1,7 @@
 <h1><%= @employee.name %></h1>
+<% if @employee.manager? %>
+  <h2>Manager</h2>
+<% end %>
 
 <ul>
   <li> <%= @employee.email %></li>
@@ -7,7 +10,9 @@
 </ul>
 
 <nav>
+  <% if current_employee_manager? %>
   <%= link_to 'Edit', edit_employee_path %>
   <%= link_to 'Delete', @employee, method: :delete, data: {confirm: 'Are you certain you want to permanently delete this employee?'} %>
+<% end %>
   <%= link_to 'All Employees', employees_path %>
 </nav>

@@ -7,5 +7,7 @@
 <% end %>
 
 <nav>
+  <% if current_employee_manager? %>
   <%= link_to 'Add New Employee', new_employee_path %>
+  <% end %>
 </nav>

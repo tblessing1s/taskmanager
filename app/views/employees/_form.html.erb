@@ -21,11 +21,21 @@
   <%= f.number_field :time %><br/>
 </p>
 
+<p>
+  <%= f.label :password %><br/>
+  <%= f.password_field :password %><br/>
+</p>
+
+<p>
+  <%= f.label :password_confirmation, "Confirm Password" %><br/>
+  <%= f.password_field :password_confirmation %><br/>
+</p>
+
 </fieldset>
 
-<p id="form-button">
+<p>
   <%= f.submit %>
-  <%= link_to 'Cancel', employees_path %>
+  <%= button_to 'Cancel', employees_path %>
 </p>
 
 
