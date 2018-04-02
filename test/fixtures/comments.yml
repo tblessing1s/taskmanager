@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  comment: MyText
+  date: 2018-03-26 19:03:00
+  task: one
+
+two:
+  name: MyString
+  comment: MyText
+  date: 2018-03-26 19:03:00
+  task: two

@@ -1,0 +1,15 @@
+<header id="content-header">
+  <h1>Comments for <%= link_to(@task.title, @task) %></h1>
+</header>
+<ol>
+  <% @comments.each do |comment| %>
+    <li>
+      <p>
+        <%= comment.name %> <%= time_ago_in_words(comment.created_at) %> ago
+      </p>
+      <p>
+        <%= comment.comment %>
+      </p>
+    </li>
+  <% end %>
+</ol>

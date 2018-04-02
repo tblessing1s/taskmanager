@@ -1,11 +1,13 @@
 <ul id='tasks'>
+<h1>Tasks</h1>
+
   <% @tasks.each do |task| %>
-    <li>
-      <article class='task'>
-        <header>
-          <h1><%= link_to task.title, task %> (<%= task.due %>)</h1>
-        </header>
-      </article>
-    </li>
+    <ul>
+      <li> <%= link_to task.title, task %> (<%= task.due %>)</li>
+    </ul>
   <% end %>
-</ul>
+
+<nav>
+  <%= link_to 'All Employees', employees_path %>
+  <%= link_to 'Add New Task', new_task_path %>
+</nav>
