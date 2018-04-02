@@ -10,7 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180326232559) do
+
+
+
+ActiveRecord::Schema.define(version: 20180327000300) do
+
+  create_table "comments", force: :cascade do |t|
+    t.string "name"
+    t.text "comment"
+    t.datetime "date"
+    t.integer "task_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["task_id"], name: "index_comments_on_task_id"
+  end
 
   create_table "employees", force: :cascade do |t|
     t.string "name"
@@ -19,7 +32,10 @@ ActiveRecord::Schema.define(version: 20180326232559) do
     t.integer "time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+
     t.string "password_digest"
+
+
     t.boolean "manager", default: false
   end
 

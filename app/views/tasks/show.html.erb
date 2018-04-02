@@ -1,0 +1,31 @@
+<article id="task" class="task">
+  <header>
+    <h1><%= @task.title %></h1>
+  </header>
+
+  <p>
+    Description: <%= @task.description %>
+  </p>
+
+  <p>
+    Time to Complete: <%= @task.lot %> minutes
+  </p>
+
+  <p>
+    Due on: <%= @task.due %>
+  </p>
+
+  <p>
+    Reoccuring: <%= @task.reoccuring %>
+  </p>
+
+  <footer>
+    <nav>
+      <%= link_to 'Edit', edit_task_path %>
+      <%= link_to 'Delete', @task, method: :delete, data: {confirm: 'Are you certain you want to permanently delete this task?'} %>
+      <%= link_to pluralize(@task.comments.size, "comment"),
+                  task_comments_path(@task) %>
+      <%= link_to 'All Tasks', tasks_path %>
+    </nav>
+  </footer>
+</article>

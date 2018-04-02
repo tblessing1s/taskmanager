@@ -9,5 +9,9 @@
 <nav>
   <% if current_employee_manager? %>
   <%= link_to 'Add New Employee', new_employee_path %>
+
   <% end %>
+
+  <%= link_to 'All Tasks', tasks_path %>
+
 </nav>
