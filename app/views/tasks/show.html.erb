@@ -2,22 +2,37 @@
   <header>
     <h1><%= @task.title %></h1>
   </header>
-
   <p>
     Description: <%= @task.description %>
   </p>
-
   <p>
     Time to Complete: <%= @task.lot %> minutes
   </p>
-
   <p>
     Due on: <%= @task.due %>
   </p>
-
   <p>
     Reoccuring: <%= @task.reoccuring %>
   </p>
+
+  <%= form_for([@task, Comment.new]) do |f| %>
+  <fieldset>
+    <p>
+      <li class="required">
+        <%= f.label :name %>
+        <%= f.text_field :name, size: 20, autofocus: true %>
+      </li>
+      <li class="required">
+        <%= f.label :comment %><br/>
+        <%= f.text_field :comment, cols: 80, autofocus: true %>
+      </li>
+    </p>
+    <p>
+      <%= f.submit 'Post Comment' %>
+      <%= link_to "Cancel", @task, class: 'button' %>
+    </p>
+  </fieldset>
+  <% end %>
 
   <footer>
     <nav>

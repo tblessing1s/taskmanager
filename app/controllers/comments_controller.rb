@@ -4,6 +4,18 @@ class CommentsController < ApplicationController
   def index
     @comments = @task.comments
   end
+  def new
+    @comment = @task.comments.new
+  end
+  def create
+    @comment = @task.comments.new(comment_params)
+    if @comment.save
+      redirect_to @task,
+        notice: "Thank you for your Comment!"
+    else
+      render :new
+    end
+  end
 end
 
   private
