@@ -1,4 +1,6 @@
 class Employee < ApplicationRecord
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable and :omniauthable
   has_secure_password
   validates :name, presence: true
   validates :email, presence: true,
