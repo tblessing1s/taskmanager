@@ -1,11 +1,14 @@
 class EmployeesController < ApplicationController
+  before_action :require_signin, except: [:index]
+  before_action :require_manager, except: [:index, :show]
+  before_action :set_employee, except: [:index, :new, :create]
 
   def index
     @employees = Employee.all
   end
 
   def show
-    @employee = Employee.find(params[:id])
+    @tasks = @employee.tasks
   end
 
   def new
@@ -22,28 +25,29 @@ class EmployeesController < ApplicationController
   end
 
   def edit
-    @employee = Employee.find(params[:id])
-
   end
 
   def update
-    @employee = Employee.find(params[:id])
-      if @employee.update(employee_params)
-        redirect_to employees_path, notice: "Employee Updated"
-      else
-        render :new
-      end
+    if @employee.update(employee_params)
+      redirect_to employees_path, notice: "Employee Updated"
+    else
+      render :new
+    end
   end
 
   def destroy
-    @employee = Employee.find(params[:id])
     @employee.destroy
     redirect_to employees_path, notice: 'Employee Deleted'
   end
 
   private
-
-  def employee_params
-    params.require(:employee).permit(:name, :email, :phone, :time)
-  end
+    def set_employee
+      @employee = Employee.find(params[:id])
+    end
+    def employee_params
+      params.require(:employee).permit(:name, :email, :phone, :time, :password, :password_confirmation, :manager)
+    end
+    def require_correct_employee
+      redirect_to employees_path unless current_employee?(@employee)
+    end
 end
