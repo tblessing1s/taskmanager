@@ -1,6 +1,7 @@
 class EmployeesController < ApplicationController
   before_action :require_signin, except: [:index]
   before_action :require_manager, except: [:index, :show]
+
   before_action :set_employee, except: [:index, :new, :create]
 
   def index
@@ -37,10 +38,12 @@ class EmployeesController < ApplicationController
 
   def destroy
     @employee.destroy
+    session[:employee_id] = nil
     redirect_to employees_path, notice: 'Employee Deleted'
   end
 
   private
+  
     def set_employee
       @employee = Employee.find(params[:id])
     end
@@ -50,4 +53,5 @@ class EmployeesController < ApplicationController
     def require_correct_employee
       redirect_to employees_path unless current_employee?(@employee)
     end
+
 end
