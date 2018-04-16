@@ -19,7 +19,11 @@
   <p>
     <%= f.label "Reoccuring: " %>
     <%= f.check_box :reoccuring %> Yes
-  </P>
+  </p>
+  <p>
+    <%= f.label "Employee: " %>
+    <%= f.select :employee_id, Employee.all.collect { |c| [c.name, c.id]}, {prompt: "-Select Employee-"} %> 
+  </p>
 </fieldset>
   <p>
     <%= f.submit %>
