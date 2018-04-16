@@ -1,18 +1,20 @@
 class TasksController < ApplicationController
+  before_action :require_signin, except: [:index]
+  before_action :require_manager, except: [:index, :show]
+  before_action :set_task, except: [:index, :new, :create]
+
   def index
     @tasks = Task.all
   end
   def show
-    @task = Task.find(params[:id])
+    @comments = @task.comments
   end
   def new
     @task = Task.new
   end
   def edit
-    @task = Task.find(params[:id])
   end
   def update
-    @task = Task.find(params[:id])
       if @task.update(task_params)
         redirect_to tasks_path, notice: "Task Updated"
       else
@@ -20,7 +22,6 @@ class TasksController < ApplicationController
       end
   end
   def destroy
-    @task = Task.find(params[:id])
     @task.destroy
     redirect_to tasks_path, notice: 'Task Deleted'
   end
@@ -34,8 +35,11 @@ class TasksController < ApplicationController
   end
 
 private
+  def set_task
+    @task = Task.find(params[:id])
+  end
   def task_params
     params.require(:task).
-      permit(:title, :description, :lot, :reoccuring, :due)
+      permit(:title, :description, :lot, :reoccuring, :due, :employee_id, :completed)
   end
 end

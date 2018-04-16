@@ -4,15 +4,23 @@
 <% end %>
 
 <ul>
-  <li> <%= @employee.email %></li>
-  <li> <%= @employee.phone %></li>
+  <li>Email: <%= @employee.email %></li>
+  <li>Phone: <%= @employee.phone %></li>
   <li> <%= @employee.time %> minutes </li>
 </ul>
-
+<ol id="tasks">
+  <% @tasks.each do |task| %>
+    <ul>
+      <li> <%= link_to task.title, task %></li>
+    </ul>
+  <% end %>
+</ol>
 <nav>
   <% if current_employee_manager? %>
-  <%= link_to 'Edit', edit_employee_path %>
-  <%= link_to 'Delete', @employee, method: :delete, data: {confirm: 'Are you certain you want to permanently delete this employee?'} %>
-<% end %>
+    <%= link_to 'Add New Task', new_task_path %>
+    <%= link_to 'Edit', edit_employee_path %>
+    <%= link_to 'Delete', @employee, method: :delete, data: {confirm: 'Are you certain you want to permanently delete this employee?'} %>
+  <% end %>
+
   <%= link_to 'All Employees', employees_path %>
 </nav>

@@ -5,7 +5,7 @@
   <% @comments.each do |comment| %>
     <li>
       <p>
-        <%= comment.name %> <%= comment.created_at %>
+        <%= link_to comment.employee.name, comment.employee %> <%= comment.created_at %>
       </p>
       <p>
         <%= comment.comment %>
