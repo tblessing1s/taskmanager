@@ -2,29 +2,60 @@
   <header>
     <h1><%= @task.title %></h1>
   </header>
-
+  <% if @task.completed? %>
+    Completed
+  <% end %>
   <p>
     Description: <%= @task.description %>
   </p>
-
+  <p>
+    Assigned to: <%= @task.employee.name %>
   <p>
     Time to Complete: <%= @task.lot %> minutes
   </p>
-
   <p>
-    Due on: <%= @task.due %>
+    Due on: <%= @task.due.strftime("%d %b, %Y") %>
   </p>
-
   <p>
     Reoccuring: <%= @task.reoccuring %>
   </p>
-
+  <%= form_for(@task) do |f| %>
+    <%= f.label :completed, "Complete This Task" %> <%= f.check_box :completed %>
+    <%= f.submit %>
+  <% end %>
+  <%= form_for([@task, Comment.new]) do |f| %>
+  <fieldset>
+    <p>
+      <li class="required">
+        <%= f.label :comment, "Post your Comment" %><br/>
+        <%= f.text_field :comment, cols: 80, autofocus: true %>
+      </li>
+    </p>
+    <p>
+      <%= f.submit 'Post Comment' %>
+      <%= link_to "Cancel", @task, class: 'button' %>
+    </p>
+  </fieldset>
+  <% end %>
+  <h2>Comments</h2>
+  <ol id="comments">
+    <% @comments.each do |comment| %>
+      <ul>
+        <li>
+          <p>
+            <%= link_to comment.employee.name, comment.employee %> <%= comment.created_at.strftime("%d %b, %Y") %>
+          </p>
+          <p>
+            <%= comment.comment %>
+          </p>
+        </li>
+      </ul>
+    <% end %>
+  </ol>
   <footer>
     <nav>
       <%= link_to 'Edit', edit_task_path %>
       <%= link_to 'Delete', @task, method: :delete, data: {confirm: 'Are you certain you want to permanently delete this task?'} %>
-      <%= link_to pluralize(@task.comments.size, "comment"),
-                  task_comments_path(@task) %>
       <%= link_to 'All Tasks', tasks_path %>
     </nav>
   </footer>

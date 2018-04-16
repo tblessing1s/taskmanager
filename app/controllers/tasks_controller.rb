@@ -1,13 +1,19 @@
 class TasksController < ApplicationController
+<<<<<<< HEAD
   before_action :require_signin, except: [:index, :new, :edit, :create, :update]
   before_action :require_manager
+=======
+  before_action :require_signin, except: [:index]
+  before_action :require_manager, except: [:index, :show]
+  before_action :set_task, except: [:index, :new, :create]
+>>>>>>> 517ac87b0e3ebf309e92bff9916d8ecefebfcc5b
 
   def index
     @tasks = Task.all
   end
 
   def show
-    @task = Task.find(params[:id])
+    @comments = @task.comments
   end
 
   def new
@@ -15,11 +21,9 @@ class TasksController < ApplicationController
   end
 
   def edit
-    @task = Task.find(params[:id])
   end
 
   def update
-    @task = Task.find(params[:id])
       if @task.update(task_params)
         redirect_to tasks_path, notice: "Task Updated"
       else
@@ -28,7 +32,6 @@ class TasksController < ApplicationController
   end
 
   def destroy
-    @task = Task.find(params[:id])
     @task.destroy
     redirect_to tasks_path, notice: 'Task Deleted'
   end
@@ -43,8 +46,15 @@ class TasksController < ApplicationController
   end
 
 private
+  def set_task
+    @task = Task.find(params[:id])
+  end
   def task_params
     params.require(:task).
+<<<<<<< HEAD
       permit(:title, :description, :lot, :reoccuring, :due, :employee_id)
+=======
+      permit(:title, :description, :lot, :reoccuring, :due, :employee_id, :completed)
+>>>>>>> 517ac87b0e3ebf309e92bff9916d8ecefebfcc5b
   end
 end

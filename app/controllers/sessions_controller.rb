@@ -15,7 +15,7 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-  session[:employee_id] = nil
-  redirect_to employees_url, notice: "You're now signed out!"
-end
+    session[:employee_id] = nil
+    redirect_to employees_url, notice: "You're now signed out!"
+  end
 end

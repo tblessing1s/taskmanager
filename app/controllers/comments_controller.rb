@@ -1,8 +1,22 @@
 class CommentsController < ApplicationController
-  before_action :set_task
+  before_action :require_signin [:index]
+  before_action :set_task [:index, :new, :create]
 
   def index
     @comments = @task.comments
+  end
+  def new
+    @comment = @task.comments.new
+  end
+  def create
+    @comment = @task.comments.new(comment_params)
+    @comment.employee = current_employee
+    if @comment.save
+      redirect_to @task,
+        notice: "Thank you for your Comment!"
+    else
+      render :new
+    end
   end
 end
 
@@ -11,5 +25,5 @@ end
       @task = Task.find(params[:task_id])
     end
     def comment_params
-      params.require(:comment).permit(:name, :comment)
+      params.require(:comment).permit(:comment)
     end

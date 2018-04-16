@@ -1,4 +1,9 @@
 class Employee < ApplicationRecord
+  has_many :comments, dependent: :destroy
+  has_many :tasks
+
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable and :omniauthable
   has_secure_password
   validates :name, presence: true
   validates :email, presence: true,
