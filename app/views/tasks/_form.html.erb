@@ -1,4 +1,32 @@
 <%= form_for(@task) do |f| %>
+<<<<<<< HEAD
+
+<fieldset>
+  <p>
+    <%= f.label "Task Name: " %>
+    <%= f.text_field :title %>
+  </p>
+  <p>
+    <%= f.label "Task Description: " %>
+    <%= f.text_area :description, size: "20x10" %>
+  </P>
+  <p>
+    <%= f.label "Length of Time To Complete: " %>
+    <%= f.number_field :lot %> Minutes
+  </p>
+  <p>
+    <%= f.label "Complete By: " %>
+    <%= f.date_select :due %>
+  <p>
+    <%= f.label "Reoccuring: " %>
+    <%= f.check_box :reoccuring %> Yes
+  </p>
+  <p>
+    <%= f.label "Employee: " %>
+    <%= f.select :employee_id, Employee.all.collect { |c| [c.name, c.id]}, {prompt: "-Select Employee-"} %> 
+  </p>
+</fieldset>
+=======
   <fieldset>
     <p>
       <%= f.label "Task Name: " %>
@@ -23,6 +51,7 @@
       <%= f.label "Assign to: " %>
       <%= f.collection_select :employee_id, Employee.order(:name),:id,:name, include_blank: false %>
   </fieldset>
+>>>>>>> 517ac87b0e3ebf309e92bff9916d8ecefebfcc5b
   <p>
     <%= f.submit %>
   </p>

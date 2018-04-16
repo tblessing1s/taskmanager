@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
+ActiveRecord::Schema.define(version: 20180402224527) do
+=======
 ActiveRecord::Schema.define(version: 20180405235553) do
+>>>>>>> 517ac87b0e3ebf309e92bff9916d8ecefebfcc5b
 
   create_table "comments", force: :cascade do |t|
     t.text "comment"
@@ -29,10 +33,14 @@ ActiveRecord::Schema.define(version: 20180405235553) do
     t.integer "time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+<<<<<<< HEAD
+=======
 
     t.string "password_digest"
 
+>>>>>>> 517ac87b0e3ebf309e92bff9916d8ecefebfcc5b
     t.boolean "manager", default: false
+    t.string "password_digest"
   end
 
   create_table "tasks", force: :cascade do |t|
@@ -45,6 +53,10 @@ ActiveRecord::Schema.define(version: 20180405235553) do
     t.datetime "updated_at", null: false
     t.date "due"
     t.integer "employee_id"
+<<<<<<< HEAD
+    t.index ["employee_id"], name: "index_tasks_on_employee_id"
+=======
+>>>>>>> 517ac87b0e3ebf309e92bff9916d8ecefebfcc5b
   end
 
 end
