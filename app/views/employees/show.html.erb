@@ -7,7 +7,6 @@
   <li>Email: <%= @employee.email %></li>
   <li>Phone: <%= @employee.phone %></li>
   <li> <%= @employee.time %> minutes </li>
-  <li> Task: <%= link_to @employee.tasks.pluck(:title).join(" "), task_path %> </li>
 </ul>
 <ol id="tasks">
   <% @tasks.each do |task| %>
