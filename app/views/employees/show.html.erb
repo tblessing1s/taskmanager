@@ -1,13 +1,8 @@
-<h1><%= @employee.name %></h1>
+<h1>Welcome, <%= @employee.name %>!</h1>
 <% if @employee.manager? %>
   <h2>Manager</h2>
 <% end %>
 
-<ul>
-  <li>Email: <%= @employee.email %></li>
-  <li>Phone: <%= @employee.phone %></li>
-  <li> <%= @employee.time %> minutes </li>
-</ul>
 <ol id="tasks">
   <% @tasks.each do |task| %>
     <ul>
