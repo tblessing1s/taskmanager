@@ -3,13 +3,37 @@
   <h2>Manager</h2>
 <% end %>
 
-<ol id="tasks">
-  <% @tasks.each do |task| %>
+<ul>
+  <li>Email: <%= @employee.email %></li>
+  <li>Phone: <%= @employee.phone %></li>
+  <li> <%= @employee.time %> minutes </li>
+</ul>
+<ol id="today">
+  <p>Tasks Due Today</p>
+  <% @employee.tasks.current.each do |task| %>
+
     <ul>
       <li> <%= link_to task.title, task %></li>
     </ul>
   <% end %>
 </ol>
+<ol id="upcoming">
+  <p>Upcoming Tasks Due</p>
+  <% @employee.tasks.upcoming.each do |task| %>
+    <ul>
+      <li> <%= link_to task.title, task %></li>
+    </ul>
+  <% end %>
+</ol>
+<ol id="completed">
+  <p>Tasks Completed</p>
+  <% @employee.tasks.completed.each do |task| %>
+    <ul>
+      <li> <%= link_to task.title, task %></li>
+    </ul>
+  <% end %>
+</ol>
+
 <nav>
   <% if current_employee_manager? %>
     <%= link_to 'Add New Task', new_task_path %>
