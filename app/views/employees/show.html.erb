@@ -1,4 +1,4 @@
-<h1><%= @employee.name %></h1>
+<h1>Welcome, <%= @employee.name %>!</h1>
 <% if @employee.manager? %>
   <h2>Manager</h2>
 <% end %>
@@ -11,6 +11,7 @@
 <ol id="today">
   <p>Tasks Due Today</p>
   <% @employee.tasks.current.each do |task| %>
+
     <ul>
       <li> <%= link_to task.title, task %></li>
     </ul>
