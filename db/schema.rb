@@ -29,9 +29,7 @@ ActiveRecord::Schema.define(version: 20180405235553) do
     t.integer "time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-
     t.string "password_digest"
-
     t.boolean "manager", default: false
   end
 

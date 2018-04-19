@@ -1,0 +1,33 @@
+<h2>Amount of Tasks completed for the week!</h2>
+
+<ol id="today">
+  <p>Tasks Due Today</p>
+  <% @employee.tasks.current.each do |task| %>
+    <ul>
+      <li> <%= link_to task.title, task %></li>
+    </ul>
+  <% end %>
+</ol>
+
+<ol id="upcoming">
+  <p>Upcoming Tasks Due</p>
+  <% @employee.tasks.upcoming.each do |task| %>
+    <ul>
+      <li> <%= link_to task.title, task %></li>
+    </ul>
+  <% end %>
+</ol>
+
+<ol id="completed">
+  <p>Recent Tasks Completed</p>
+  <% @employee.tasks.completed.each do |task| %>
+    <ul>
+      <li> <%= link_to task.title, task %></li>
+    </ul>
+  <% end %>
+</ol>
+<% if current_employee_manager? %>
+  <%= link_to 'Edit', edit_employee_path, class: 'button' %>
+  <%= link_to 'Delete', @employee, class: 'button', method: :delete, data: {confirm: 'Are you certain you want to permanently delete this employee?'} %>
+  <%= link_to 'All Employees', employees_path %>
+<% end %>

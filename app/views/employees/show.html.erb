@@ -1,45 +1,8 @@
 <h1>Welcome, <%= @employee.name %>!</h1>
-<% if @employee.manager? %>
-  <h2>Manager</h2>
-<% end %>
-
-<ul>
-  <li>Email: <%= @employee.email %></li>
-  <li>Phone: <%= @employee.phone %></li>
-  <li> <%= @employee.time %> minutes </li>
-</ul>
-<ol id="today">
-  <p>Tasks Due Today</p>
-  <% @employee.tasks.current.each do |task| %>
-
-    <ul>
-      <li> <%= link_to task.title, task %></li>
-    </ul>
-  <% end %>
-</ol>
-<ol id="upcoming">
-  <p>Upcoming Tasks Due</p>
-  <% @employee.tasks.upcoming.each do |task| %>
-    <ul>
-      <li> <%= link_to task.title, task %></li>
-    </ul>
-  <% end %>
-</ol>
-<ol id="completed">
-  <p>Tasks Completed</p>
-  <% @employee.tasks.completed.each do |task| %>
-    <ul>
-      <li> <%= link_to task.title, task %></li>
-    </ul>
-  <% end %>
-</ol>
-
-<nav>
   <% if current_employee_manager? %>
-    <%= link_to 'Add New Task', new_task_path %>
-    <%= link_to 'Edit', edit_employee_path %>
-    <%= link_to 'Delete', @employee, method: :delete, data: {confirm: 'Are you certain you want to permanently delete this employee?'} %>
-  <% end %>
+    <%= render 'manager' %>
 
-  <%= link_to 'All Employees', employees_path %>
-</nav>
+    <%= link_to 'All Employees', employees_path %>
+  <% else %>
+    <%= render 'employee' %>
+  <% end %>
