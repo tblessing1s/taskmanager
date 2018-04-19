@@ -1,26 +1,29 @@
-<h1>Welcome, <%= @employee.name %>!</h1>
-
 <h2>Overall Staff Efficiency</h2>
 
 <h3><%= link_to 'Create New Task', new_task_path %></h3>
 
-<h4>Tasks Due Today</h4>
-<p>
-    <ol id="today">
-      <% Task.current.each do |task| %>
-        <ul>
-          <li> <%= link_to task.title, task %></li>
-        </ul>
-      <% end %>
-    </ol>
-    <ol id="completed">
-      <% Task.completed.each do |task| %>
-        <ul>
-          <li> <%= link_to task.title, task %></li>
-        </ul>
-      <% end %>
-    </ol>
-</p>
-
-
-<%= link_to 'Add New Staff Member', new_employee_path %>
+<ol id="today">
+  <h4>Tasks Due Today</h4>
+  <% Task.current.each do |task| %>
+    <ul>
+      <li> <%= link_to task.title, task %>, <%= link_to task.employee.name %></li>
+    </ul>
+  <% end %>
+</ol>
+<ol id="upcoming">
+  <h4>Staff Member Workload</h4>
+  <% @employees.each do |employee| %>
+    <ul>
+      <li> <%= link_to employee.name, employee %> - <%= Employee.percentwork(employee.id).round %>%</li>
+    </ul>
+  <% end %>
+</ol>
+<h5><%= link_to 'Add New Staff Member', new_employee_path, class: 'button' %></h5>
+<ol id="completed">
+  <h4>Tasks Completed</h4>
+  <% Task.completed.each do |task| %>
+    <ul>
+      <li> <%= link_to task.title, task %></li>
+    </ul>
+  <% end %>
+</ol>

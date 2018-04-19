@@ -1,7 +1,6 @@
 class EmployeesController < ApplicationController
   before_action :require_signin, except: [:index]
   before_action :require_manager, except: [:index, :show]
-
   before_action :set_employee, except: [:index, :new, :create]
 
   def index
@@ -10,6 +9,7 @@ class EmployeesController < ApplicationController
 
   def show
     @tasks = @employee.tasks
+    @employees = Employee.all
   end
 
   def new
@@ -43,7 +43,7 @@ class EmployeesController < ApplicationController
   end
 
   private
-  
+
     def set_employee
       @employee = Employee.find(params[:id])
     end
